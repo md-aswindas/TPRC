@@ -11,6 +11,7 @@ import {
 import { CertificateModal } from "./CertificateModal";
 import { ShareFloating } from "./ShareFloating";
 import { urlFor } from "@/lib/sanity.image";
+import { sendContactEmail } from "@/app/actions/contact";
 
 const HERO_BG =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuCWASYnz6kODAfg1YQ7cNgUaCc6Qf64cMUfUHa-QNDn1FrMKLUdQdl3YTQHI8hCfUECTGZghv4-X3PzmTWa1V3QJOSi4ifkXFl9DBLxqsCjjWkGdPK2iQIFEFWmJ_Be1ygq8HgEgr-tk8-CPTuhtc4DjiKfL4OnIogfAvI4svCNTlMf5nNGIFUPaIUwtjhC0vjyHufhH0MTJwT3Z9r8iuUVLhjnrFHeJNJ3rsijo4Z820RAIbo4bSFdhdM--vU7TxWWDxHSErUfIfM7";
@@ -756,12 +757,21 @@ export function LandingPage({ clients }: { clients: any[] }) {
               <form
                 id="contactForm"
                 className="space-y-12"
-                onSubmit={onContactSubmit}
+                action={async (formData) => {
+                  const result = await sendContactEmail(formData);
+                  if (result.success) {
+                    alert("Thank you — we will get back to you shortly.");
+                    (document.getElementById("contactForm") as HTMLFormElement).reset();
+                  } else {
+                    alert("Something went wrong. Please try again.");
+                  }
+                }}
               >
                 <div className="form-group">
                   <label htmlFor="fullName">FULL NAME</label>
                   <input
                     id="fullName"
+                    name="fullName"
                     type="text"
                     placeholder="John Doe"
                     required
@@ -772,6 +782,7 @@ export function LandingPage({ clients }: { clients: any[] }) {
                     <label htmlFor="email">EMAIL</label>
                     <input
                       id="email"
+                      name="email"
                       type="email"
                       placeholder="john@email.com"
                       required
@@ -781,6 +792,7 @@ export function LandingPage({ clients }: { clients: any[] }) {
                     <label htmlFor="phone">PHONE</label>
                     <input
                       id="phone"
+                      name="phone"
                       type="tel"
                       placeholder="+91 0000000000"
                       inputMode="numeric"
@@ -798,6 +810,7 @@ export function LandingPage({ clients }: { clients: any[] }) {
                   <textarea
                     ref={messageRef}
                     id="messageBox"
+                    name="messageBox"
                     placeholder="Tell us about your project..."
                     rows={1}
                     onInput={onMessageInput}
