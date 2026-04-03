@@ -75,7 +75,7 @@ export function ShareFloating({ siteUrl }: { siteUrl?: string }) {
         id="shareBtn"
         onClick={() => setMenuOpen((o) => !o)}
       >
-        <span className="material-symbols-outlined text-3xl">share</span>
+        <span className="material-symbols-outlined text-5xl">share</span>
       </div>
     </div>
   );

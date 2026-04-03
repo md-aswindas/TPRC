@@ -10,6 +10,7 @@ import {
 } from "react";
 import { CertificateModal } from "./CertificateModal";
 import { ShareFloating } from "./ShareFloating";
+
 import { urlFor } from "@/lib/sanity.image";
 import { sendContactEmail } from "@/app/actions/contact";
 
@@ -477,7 +478,7 @@ export function LandingPage({ clients, projects }: { clients: any[], projects: a
           </div>
         </section>
 
-        <section className="px-6 md:px-20 py-20 bg-white dark:bg-zinc-900/50">
+        <section className="px-6 md:px-20 py-20 bg-white dark:bg-zinc-900/50 rounded-2xl">
           <div className="text-center mb-16">
             <span className="text-primary font-bold uppercase tracking-widest text-xs">
               Trusted By Industry Leaders
@@ -490,8 +491,8 @@ export function LandingPage({ clients, projects }: { clients: any[], projects: a
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8">
             {clients?.map((client: any) => (
-              <div 
-                key={client._id} 
+              <div
+                key={client._id}
                 className="group bg-background-light dark:bg-background-dark p-8 rounded-xl flex flex-col items-center justify-center gap-4 shadow-sm hover:shadow-xl transition-all">
                 <img
                   src={urlFor(client.logo).url()}
@@ -520,32 +521,34 @@ export function LandingPage({ clients, projects }: { clients: any[], projects: a
             >
               {projects?.map((project: any) => (
 
-              <div className="min-w-[400px] md:min-w-[600px] snap-center">
-                <div className="group relative overflow-hidden rounded-2xl aspect-[16/9]">
-                  <div className="absolute inset-0 bg-charcoal/40 group-hover:bg-charcoal/20 transition-[background-color,opacity] duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] z-10" />
-                  <div
-                    className="w-full h-full bg-center bg-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.06]"
-                    style={{ backgroundImage: `url("${urlFor(project.image).url()}")` }}
-                  />
-                  <div className="absolute bottom-0 left-0 p-10 z-20">
-                    <span className="bg-primary text-charcoal px-4 py-1 rounded-full text-xs font-bold mb-4 inline-block">
-                      {project.category}
-                    </span>
-                    <h3 className="text-white text-3xl font-black">
-                    {project.title}
-                    </h3>
-                    <p className="text-white/80 mt-2">
-                    {project.description}
-                    </p>
+                <div className="min-w-[400px] md:min-w-[600px] snap-center">
+                  <div className="group relative overflow-hidden rounded-2xl aspect-[16/9]">
+                    <div className="absolute inset-0 bg-charcoal/40 group-hover:bg-charcoal/20 transition-[background-color,opacity] duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] z-10" />
+                    <div
+                      className="w-full h-full bg-center bg-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.06]"
+                      style={{ backgroundImage: `url("${urlFor(project.image).url()}")` }}
+                    />
+                    <div className="absolute bottom-0 left-0 p-10 z-20">
+                      <span className="bg-primary text-charcoal px-4 py-1 rounded-full text-xs font-bold mb-4 inline-block">
+                        {project.category}
+                      </span>
+                      <h3 className="text-white text-3xl font-black">
+                        {project.title}
+                      </h3>
+                      <p className="text-white/80 mt-2">
+                        {project.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
               ))}
             </div>
           </section>
         </div>
 
-        <section className="px-6 md:px-20 py-20 lg:py-32 bg-background-light dark:bg-background-dark">
+
+
+        {/* <section className="px-6 md:px-20 py-20 lg:py-32 bg-background-light dark:bg-background-dark">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-black mb-4">Industrial Hardware Store</h2>
             <p className="text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
@@ -613,9 +616,106 @@ export function LandingPage({ clients, projects }: { clients: any[], projects: a
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
-        <section className="px-6 md:px-20 py-20 lg:py-28 bg-white dark:bg-zinc-900/50">
+        {/* -----------------------------------product start--------------------------------- */}
+
+        <section className="px-6 md:px-20 py-20 lg:py-32 bg-background-light dark:bg-background-dark">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-black mb-4">Industrial Hardware Store</h2>
+            <p className="text-gray-600 dark:text-gray-400 max-w-xl mx-auto">We supply premium grade Cuplock systems, pipes, and
+              scaffolding components certified for heavy-duty industrial use.</p>
+          </div>
+          {/* <!-- Grouped Products Layout --> */}
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
+
+            {/* <!-- Scaffolding Materials --> */}
+            <div>
+              <h3 className="text-2xl font-bold mb-6 text-center text-gray-800 dark:text-gray-200">Scaffolding Materials</h3>
+              <div className="grid grid-cols-2 gap-6 lg:gap-8">
+                {/* <!-- Product Card 1 --> */}
+                <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all group">
+                  <div
+                    className="bg-gray-50 dark:bg-gray-900 rounded-xl aspect-[4/3] flex items-center justify-center mb-6 overflow-hidden">
+                    <img className="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                      data-alt="Galvanized scaffolding steel pipes bundles"
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuAu-rukwQgq2R9R2wL_U7k3UdL4dYt4X6n8Zvlo_1Kq_qDihl6Jjo94RsncUxAD5KbItuyOtIRBaEGxDZrQHmGTP3me_wdYbGhITU4AmckGoQDDMYAWq0efCsdt4WV77oun9Zrl9FhP3YZ7lT4lJCB0z2BW82Kduyt1KT8j7vjYnGtzQX_0gnfb1G8lzNR9d7KwZUtK5gWYO4I00pXRu3NUxA-AguLiQf00B3ciTcGWnZ4oteNvToOGAcn7ZLUuURQGnqXB4q8Fs31-" />
+                  </div>
+                  <h3 className="font-bold text-lg">Steel Pipes</h3>
+                  <p className="text-sm text-gray-500 mb-4">40NB &amp; 50NB Grade</p>
+                  <div className="flex justify-between items-center">
+                    <span className="text-primary font-bold">Standard Size</span>
+                    {/* <button className="size-10 rounded-full bg-charcoal text-white flex items-center justify-center">
+                  <span className="material-symbols-outlined text-sm">add</span>
+                </button> */}
+                  </div>
+                </div>
+                {/* <!-- Product Card 2 --> */}
+                <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all group">
+                  <div
+                    className="bg-gray-50 dark:bg-gray-900 rounded-xl aspect-[4/3] flex items-center justify-center mb-6 overflow-hidden">
+                    <img className="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                      data-alt="Industrial metal walking boards/planks"
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuDF436iPHDOM4SsH_3PbrTaqpU4BL7vEZdEudZe0iMUuxTK0KQTNuVllF5vmUKFpoEh54p8Hku4OTSp-IDTXXfXMTMsCuXXmmfeE7vBw4kAjJQGJJjSlJqvs2TZ9Md4xqMbcaCGLQhZIX0sG1xx-7PdsQtOIsl5v8HckAgpSLrVqYEb8rOFfYYBQr4km7-qyi--5swXvcrQKZqQmzyqvB6aBM61-Hxsre7WVujvrx7zAWpxcluHG0iDkktkfxNfYW5AHQJrlWBwcuz5" />
+                  </div>
+                  <h3 className="font-bold text-lg">Walkway Boards</h3>
+                  <p className="text-sm text-gray-500 mb-4">Galvanized Anti-Slip</p>
+                  <div className="flex justify-between items-center">
+                    <span className="text-primary font-bold">Heavy Duty</span>
+                    {/* <button className="size-10 rounded-full bg-charcoal text-white flex items-center justify-center">
+                  <span className="material-symbols-outlined text-sm">add</span>
+                </button> */}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Name<!-- Access Equipment & Accessories --> */}
+            <div>
+              <h3 className="text-2xl font-bold mb-6 text-center text-gray-800 dark:text-gray-200">Access Equipment</h3>
+              <div className="grid grid-cols-2 gap-6 lg:gap-8">
+                {/* <!-- Product Card 3 --> */}
+                <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all group">
+                  <div
+                    className="bg-gray-50 dark:bg-gray-900 rounded-xl aspect-[4/3] flex items-center justify-center mb-6 overflow-hidden">
+                    <img className="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                      data-alt="Aluminium industrial extension ladders"
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1-MAorCmAzUP59OAdV8rQDpKgA3RJRAYeknuXi45gkEoGOFbQ7MMzM9iJNjUIwYICDh3UhnzHuUVdTXm6G_e5gAQqCS27N1u-y1QocicQEHh_6LOR3SU1bFg8RiJv_hhuPUOGSIwpJmP5wOdTGZrLOOKhfXQowY2Gq3ghv10e_zWAjThH3sw6deN5OyL4s7pBUa_leVVxxk2DH_NaraHNHT-ntAzmFBgXTZsTH4NICM6sVxHR6fETmriFhZzyniSU14QOPDPtA75z" />
+                  </div>
+                  <h3 className="font-bold text-lg">Step Ladders</h3>
+                  <p className="text-sm text-gray-500 mb-4">Aluminum Alloy Grade</p>
+                  <div className="flex justify-between items-center">
+                    <span className="text-primary font-bold">L-Type</span>
+                    {/* <button className="size-10 rounded-full bg-charcoal text-white flex items-center justify-center">
+                  <span className="material-symbols-outlined text-sm">add</span>
+                </button> */}
+                  </div>
+                </div>
+                {/* <!-- Product Card 4 --> */}
+                <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all group">
+                  <div
+                    className="bg-gray-50 dark:bg-gray-900 rounded-xl aspect-[4/3] flex items-center justify-center mb-6 overflow-hidden">
+                    <img className="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                      data-alt="Assorted scaffolding metal fittings and clamps"
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjRPxexIKGfOp9TFss2EOpGC1IJfiH5-breVQzNRJYjawi5hQRNPgNlf3gnSgbTkx-a_EcoQYZK89PfacFcqczPDJE8wx2aydjS2RNOs-YKAnJIIUydHymWLMkzETVA-F9Zeh3_WRSccc5y2MmZiNP5WuVd1yPx5UxTP-gqlqYuyVHNUXqNjEPcDA1Y0ELkA8Z5-doFhq4uvbvTPsZ4aETBqnDUOX6nAalxzRC10XOQuSZIkZ0i3rIFoPiPpJ-TOsJl0ZurmdYIYI-" />
+                  </div>
+                  <h3 className="font-bold text-lg">Couplers &amp; Fittings</h3>
+                  <p className="text-sm text-gray-500 mb-4">Forged Right Angle</p>
+                  <div className="flex justify-between items-center">
+                    <span className="text-primary font-bold">EN-74 Certified</span>
+                    {/* <button className="size-10 rounded-full bg-charcoal text-white flex items-center justify-center">
+                  <span className="material-symbols-outlined text-sm">add</span>
+                </button> */}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+        {/* ----------------------------------------------------------product end-------------------------------- */}
+
+        <section className="px-6 md:px-20 py-20 lg:py-28 bg-white dark:bg-zinc-900/50 rounded-2xl">
           <div className="text-center mb-16">
             <span className="text-primary font-bold uppercase tracking-widest text-xs">
               Project Gallery
@@ -706,7 +806,62 @@ export function LandingPage({ clients, projects }: { clients: any[], projects: a
           </div>
         </section>
 
-        <section className="mx-6 md:mx-5 my-12 lg:my-15 px-6 md:px-20 py-24 lg:py-32 bg-black text-white overflow-hidden relative rounded-2xl">
+        {/* <!-- Testimonials --> */}
+        <section className="px-6 md:px-20 py-20 bg-white dark:bg-zinc-900/50 rounded-2xl">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-black mb-3">Client Feedback</h2>
+            {/* <!--  <div className="flex justify-center gap-1 text-primary">
+              <span className="material-symbols-outlined">star</span>
+              <span className="material-symbols-outlined">star</span>
+              <span className="material-symbols-outlined">star</span>
+              <span className="material-symbols-outlined">star</span>
+              <span className="material-symbols-outlined">star</span>
+            </div>   --> */}
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+
+            <div className="bg-background-light dark:bg-background-dark p-8 rounded-2xl relative">
+              <p className="italic text-gray-600 dark:text-gray-300 mb-6">
+                <span className="text-primary font-black text-lg">" </span>
+                Their commitment to safety is unparalleled. In our refinery expansion, TP Raju Engineering completed 20,000 man-hours without a single incident.
+                <span className="text-primary font-black text-lg">"</span>
+              </p>
+              <div>
+                <p className="font-black">Ramesh Kumar</p>
+                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Safety Head, HPCL</p>
+              </div>
+            </div>
+
+            <div className="bg-background-light dark:bg-background-dark p-8 rounded-2xl relative">
+              <p className="italic text-gray-600 dark:text-gray-300 mb-6">
+                <span className="text-primary font-black text-lg">" </span>
+                Excellent material quality and prompt delivery. Their fabrication work for our chemical reactor housing was precise and handled with great care.
+                <span className="text-primary font-black text-lg">"</span>
+              </p>
+              <div>
+                <p className="font-black">S. Venkatesh</p>
+                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Project Manager, L&amp;T</p>
+              </div>
+            </div>
+
+            <div className="bg-background-light dark:bg-background-dark p-8 rounded-2xl relative">
+              <p className="italic text-gray-600 dark:text-gray-300 mb-6">
+                <span className="text-primary font-black text-lg">" </span>
+                The rental service is highly efficient. They provided us with specialized cantilever scaffolding that solved a major accessibility challenge.
+                <span className="text-primary font-black text-lg">"</span>
+              </p>
+              <div>
+                <p className="font-black">David Miller</p>
+                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Site Engineer, Petrofac</p>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+
+        <section className=" mx-6 md:mx-5 my-12 lg:my-15 px-6 md:px-20 py-24 lg:py-32 bg-black text-white overflow-hidden relative rounded-2xl">
           <div className="max-w-[1400px] mx-auto grid lg:grid-cols-2 gap-20 items-start">
             <div className="relative">
               <h2 className="contact-title text-[72px] md:text-[110px] leading-[0.9] font-black tracking-tight">
