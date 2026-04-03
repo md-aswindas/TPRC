@@ -488,20 +488,20 @@ export function LandingPage({ clients }: { clients: any[] }) {
             </p>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8">
-  {clients?.map((client: any) => (
-    <div 
-      key={client._id} 
-      className="group bg-background-light dark:bg-background-dark p-8 rounded-xl flex flex-col items-center justify-center gap-4 shadow-sm hover:shadow-xl transition-all"
-    >
-      <img
-        src={urlFor(client.logo).url()}
-        alt={client.name}
-        className="h-12 object-contain grayscale group-hover:grayscale-0 transition-all"
-      />
-      <p className="font-bold text-sm">{client.name}</p>
-    </div>
-  ))}
-</div>
+            {clients?.map((client: any) => (
+              <div
+                key={client._id}
+                className="group bg-background-light dark:bg-background-dark p-8 rounded-xl flex flex-col items-center justify-center gap-4 shadow-sm hover:shadow-xl transition-all"
+              >
+                <img
+                  src={urlFor(client.logo).url()}
+                  alt={client.name}
+                  className="h-12 object-contain grayscale group-hover:grayscale-0 transition-all"
+                />
+                <p className="font-bold text-sm">{client.name}</p>
+              </div>
+            ))}
+          </div>
         </section>
 
         <div id="featured-wrapper" className="relative h-[200vh]">
@@ -518,66 +518,29 @@ export function LandingPage({ clients }: { clients: any[] }) {
               id="featured-track"
               className="flex gap-8 px-6 md:px-20 w-max"
             >
+              {clients?.map((client: any) => (
+
               <div className="min-w-[400px] md:min-w-[600px] snap-center">
                 <div className="group relative overflow-hidden rounded-2xl aspect-[16/9]">
                   <div className="absolute inset-0 bg-charcoal/40 group-hover:bg-charcoal/20 transition-[background-color,opacity] duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] z-10" />
                   <div
                     className="w-full h-full bg-center bg-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.06]"
-                    style={{ backgroundImage: `url("${FEAT1}")` }}
+                    style={{ backgroundImage: `url("${urlFor(client.logo).url()}")` }}
                   />
                   <div className="absolute bottom-0 left-0 p-10 z-20">
                     <span className="bg-primary text-charcoal px-4 py-1 rounded-full text-xs font-bold mb-4 inline-block">
-                      Refinery
+                      {client.name}
                     </span>
                     <h3 className="text-white text-3xl font-black">
-                      Bharat Petroleum Complex
+                    {client.name}
                     </h3>
                     <p className="text-white/80 mt-2">
-                      Annual Maintenance Scaffolding Contract
+                    {client.name}
                     </p>
                   </div>
                 </div>
               </div>
-              <div className="min-w-[400px] md:min-w-[600px] snap-center">
-                <div className="group relative overflow-hidden rounded-2xl aspect-[16/9]">
-                  <div className="absolute inset-0 bg-charcoal/40 group-hover:bg-charcoal/20 transition-[background-color,opacity] duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] z-10" />
-                  <div
-                    className="w-full h-full bg-center bg-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.06]"
-                    style={{ backgroundImage: `url("${FEAT2}")` }}
-                  />
-                  <div className="absolute bottom-0 left-0 p-10 z-20">
-                    <span className="bg-primary text-charcoal px-4 py-1 rounded-full text-xs font-bold mb-4 inline-block">
-                      Chemical
-                    </span>
-                    <h3 className="text-white text-3xl font-black">
-                      Reliance Polymers Facility
-                    </h3>
-                    <p className="text-white/80 mt-2">
-                      Turnkey Mechanical Fabrication
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="min-w-[400px] md:min-w-[600px] snap-center">
-                <div className="group relative overflow-hidden rounded-2xl aspect-[16/9]">
-                  <div className="absolute inset-0 bg-charcoal/40 group-hover:bg-charcoal/20 transition-[background-color,opacity] duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] z-10" />
-                  <div
-                    className="w-full h-full bg-center bg-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.06]"
-                    style={{ backgroundImage: `url("${FEAT3}")` }}
-                  />
-                  <div className="absolute bottom-0 left-0 p-10 z-20">
-                    <span className="bg-primary text-charcoal px-4 py-1 rounded-full text-xs font-bold mb-4 inline-block">
-                      Power Sector
-                    </span>
-                    <h3 className="text-white text-3xl font-black">
-                      NTPC Thermal Unit 4
-                    </h3>
-                    <p className="text-white/80 mt-2">
-                      Critical Shut-down Scaffolding
-                    </p>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </section>
         </div>
