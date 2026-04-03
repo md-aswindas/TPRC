@@ -489,10 +489,9 @@ export function LandingPage({ clients }: { clients: any[] }) {
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8">
             {clients?.map((client: any) => (
-              <div
-                key={client._id}
-                className="group bg-background-light dark:bg-background-dark p-8 rounded-xl flex flex-col items-center justify-center gap-4 shadow-sm hover:shadow-xl transition-all"
-              >
+              <div 
+                key={client._id} 
+                className="group bg-background-light dark:bg-background-dark p-8 rounded-xl flex flex-col items-center justify-center gap-4 shadow-sm hover:shadow-xl transition-all">
                 <img
                   src={urlFor(client.logo).url()}
                   alt={client.name}

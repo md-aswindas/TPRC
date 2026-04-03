@@ -1,4 +1,6 @@
-import hero from './hero'
-import client from './client' // Make sure you created client.ts in this folder
+import client from './client'
+import project from './project' 
+import gallery from './gallery'
 
-export const schemaTypes = [hero, client]
+
+export const schemaTypes = [client, project, gallery]
