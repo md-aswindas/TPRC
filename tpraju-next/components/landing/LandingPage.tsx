@@ -14,6 +14,8 @@ import { ShareFloating } from "./ShareFloating";
 import { urlFor } from "@/lib/sanity.image";
 import { sendContactEmail } from "@/app/actions/contact";
 
+import { TPRCLoader } from "./LoadingScreen";
+
 const HERO_BG =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuCWASYnz6kODAfg1YQ7cNgUaCc6Qf64cMUfUHa-QNDn1FrMKLUdQdl3YTQHI8hCfUECTGZghv4-X3PzmTWa1V3QJOSi4ifkXFl9DBLxqsCjjWkGdPK2iQIFEFWmJ_Be1ygq8HgEgr-tk8-CPTuhtc4DjiKfL4OnIogfAvI4svCNTlMf5nNGIFUPaIUwtjhC0vjyHufhH0MTJwT3Z9r8iuUVLhjnrFHeJNJ3rsijo4Z820RAIbo4bSFdhdM--vU7TxWWDxHSErUfIfM7";
 
@@ -242,6 +244,7 @@ export function LandingPage({ clients, projects }: { clients: any[], projects: a
 
   return (
     <>
+      <TPRCLoader />
       <ShareFloating />
 
       <header className="sticky top-0 z-50 w-full border-b border-gray-200/50 dark:border-gray-800/50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md transition-[background-color,backdrop-filter,border-color] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]">
