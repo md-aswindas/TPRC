@@ -38,7 +38,7 @@ const CERT2 =
 const CERT3 =
   "https://img.freepik.com/free-vector/certificate-template-design_53876-59041.jpg";
 
-export function LandingPage({ clients, projects }: { clients: any[], projects: any[] }) {
+export function LandingPage({ clients, projects, gallery, products }: { clients: any[], projects: any[], gallery: any[], products: any[] }) {
   const [certSrc, setCertSrc] = useState<string | null>(null);
   const messageRef = useRef<HTMLTextAreaElement>(null);
   const pausedSlidersRef = useRef(new Set<string>());
@@ -498,9 +498,14 @@ export function LandingPage({ clients, projects }: { clients: any[], projects: a
                 key={client._id}
                 className="group bg-background-light dark:bg-background-dark p-8 rounded-xl flex flex-col items-center justify-center gap-4 shadow-sm hover:shadow-xl transition-all">
                 <img
-                  src={urlFor(client.logo).url()}
+                  src={urlFor(client.logo)
+                    .height(48) 
+                    .fit('max') 
+                    .auto('format') 
+                    .quality(80) 
+                    .url()}
                   alt={client.name}
-                  className="h-12 object-contain grayscale group-hover:grayscale-0 transition-all"
+                  className="h-12 w-auto object-contain grayscale group-hover:grayscale-0 transition-all"
                 />
                 <p className="font-bold text-sm">{client.name}</p>
               </div>
