@@ -6,7 +6,15 @@ export default async function Home() {
     client.fetch(`*[_type == "majorClient"]{_id, name, logo}`),
     client.fetch(`*[_type == "project"] | order(_createdAt desc) {_id, title, category, description, image}`), 
     client.fetch(`*[_type == "galleryItem"] | order(_createdAt desc)`),
-    client.fetch(`*[_type == "product"] | order(_createdAt desc)`)
+    client.fetch(`*[_type == "product"] | order(categoryNumber asc) {
+      _id,
+      title,
+      categoryName,
+      categoryNumber,
+      subtitle,
+      tag,
+      image
+    }`)
     ]);
 
   return (

@@ -37,4 +37,19 @@ export default {
       hidden: ({ document }: any) => document?.mediaType !== 'video',
     },
   ],
+  // Preview must be outside of the fields array
+  preview: {
+    select: {
+      title: 'title',
+      media: 'image',
+      type: 'mediaType'
+    },
+    prepare({ title, media, type }: any) {
+      return {
+        title: title || 'Untitled Gallery Item',
+        subtitle: type === 'video' ? '🎥 Video' : '🖼️ Image',
+        media: media
+      }
+    }
+  }
 }
