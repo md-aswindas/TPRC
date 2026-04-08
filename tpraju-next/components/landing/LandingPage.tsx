@@ -38,7 +38,8 @@ const CERT2 =
 const CERT3 =
   "https://img.freepik.com/free-vector/certificate-template-design_53876-59041.jpg";
 
-const HARDCODED_CATEGORIES = [
+// Fallback categories for when products are not available
+const FALLBACK_CATEGORIES = [
   {
     id: "scaffolding",
     number: "01",
@@ -136,60 +137,98 @@ const HARDCODED_CATEGORIES = [
         image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80"
       }
     ]
-  },
-  // {
-  //   id: "industrial",
-  //   number: "03",
-  //   name: "Power & Hand Tools",
-  //   products: [
-  //     {
-  //       id: "p13",
-  //       name: "Impact Drills",
-  //       subtitle: "Heavy Duty Motors",
-  //       tag: "Power Tools",
-  //       image: "https://img.freepik.com/premium-photo/industrial-power-tool-worker-using-angle-grinder-with-sparks-flying_53876-130005.jpg?w=800"
-  //     },
-  //     {
-  //       id: "p14",
-  //       name: "Angle Grinders",
-  //       subtitle: "Professional Grade",
-  //       tag: "Cutting",
-  //       image: "https://img.freepik.com/free-photo/closeup-photo-worker-welding-metal-with-sparks-factory_181624-9122.jpg?w=800"
-  //     },
-  //     {
-  //       id: "p15",
-  //       name: "Rotary Hammers",
-  //       subtitle: "Concrete Drilling",
-  //       tag: "Demolition",
-  //       image: "https://img.freepik.com/free-photo/view-professional-industrial-vacuum-cleaner_23-2150171221.jpg?w=800"
-  //     },
-  //     {
-  //       id: "p16",
-  //       name: "Cordless Wrenches",
-  //       subtitle: "Lithium Ion Battery",
-  //       tag: "Fastening",
-  //       image: "https://img.freepik.com/free-photo/auto-mechanic-repairman-using-wrench_1303-26466.jpg?w=800"
-  //     },
-  //     {
-  //       id: "p17",
-  //       name: "Circular Saws",
-  //       subtitle: "Wood & Metal",
-  //       tag: "Cutting Tool",
-  //       image: "https://img.freepik.com/premium-photo/industrial-power-tool-worker-using-angle-grinder-with-sparks-flying_53876-130005.jpg?w=800"
-  //     },
-  //     {
-  //       id: "p18",
-  //       name: "Laser Levels",
-  //       subtitle: "Precision Measurement",
-  //       tag: "Alignment",
-  //       image: "https://images.unsplash.com/photo-1590650153855-d9e808231d41?auto=format&fit=crop&w=800&q=80"
-  //     }
-  //   ]
-  // }
+  }
 ];
 
+// Helper function to transform Sanity products into categories
+const transformProductsToCategories = (products: any[]) => {
+  if (!products || products.length === 0) {
+    return FALLBACK_CATEGORIES;
+  }
+
+  // Group products by category
+  const grouped = products.reduce((acc: Record<string, any>, product: any) => {
+    const categoryKey = product.categoryName || "Uncategorized";
+    if (!acc[categoryKey]) {
+      acc[categoryKey] = {
+        id: product.categoryName?.toLowerCase().replace(/\s+/g, '-') || "uncategorized",
+        number: product.categoryNumber || "00",
+        name: product.categoryName || "Uncategorized",
+        products: []
+      };
+    }
+    acc[categoryKey].products.push({
+      id: product._id,
+      name: product.title,
+      subtitle: product.subtitle,
+      tag: product.tag,
+      image: product.image ? urlFor(product.image).url() : "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80"
+    });
+    return acc;
+  }, {});
+
+  return Object.values(grouped);
+};
+
+// Fallback gallery items for when no gallery data is available
+const FALLBACK_GALLERY_ITEMS = [
+  { id: 'g1', mediaType: 'image', src: "https://img.freepik.com/premium-photo/workers-ascending-metal-maze-realistic-depiction-scaffolding-climbing-candid-daily-wo_980716-109649.jpg?w=2000", gridClass: "col-span-2 row-span-2", title: "Scaffolding Installation" },
+  { id: 'g2', mediaType: 'image', src: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80", gridClass: "col-span-2 row-span-1", title: "Project Overview" },
+  { id: 'g3', mediaType: 'video', src: "https://www.w3schools.com/html/mov_bbb.mp4", gridClass: "col-span-1 row-span-1", title: "Work in Progress" },
+  { id: 'g4', mediaType: 'image', src: "https://cdn.pixabay.com/photo/2023/09/14/09/07/scaffolding-8252585_960_720.jpg", gridClass: "col-span-1 row-span-1", title: "Safety Setup" },
+  { id: 'g5', mediaType: 'image', src: "https://images.unsplash.com/photo-1590650153855-d9e808231d41?auto=format&fit=crop&w=900&q=80", gridClass: "col-span-1 row-span-2 hidden md:block", title: "Structural Work" },
+  { id: 'g6', mediaType: 'video', src: "https://www.w3schools.com/html/movie.mp4", gridClass: "col-span-2 row-span-2", title: "On-Site Documentation" },
+  { id: 'g7', mediaType: 'image', src: "https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=900&q=80", gridClass: "col-span-1 row-span-1", title: "Construction Details" },
+  { id: 'g8', mediaType: 'image', src: "https://img.freepik.com/premium-photo/construction-workers-working-construction-site_891336-3566.jpg", gridClass: "col-span-1 row-span-1", title: "Team at Work" },
+  { id: 'g9', mediaType: 'image', src: "https://images.unsplash.com/photo-1590650153855-d9e808231d41?auto=format&fit=crop&w=900&q=80", gridClass: "col-span-2 row-span-1 md:hidden", title: "Project Completion" },
+];
+
+// Helper function to transform Sanity gallery items
+const transformGalleryItems = (galleryItems: any[]) => {
+  if (!galleryItems || galleryItems.length === 0) {
+    return FALLBACK_GALLERY_ITEMS;
+  }
+
+  // Map through gallery items and optimize media
+  return galleryItems.map((item: any, index: number) => {
+    let src = '';
+    if (item.mediaType === 'image' && item.image) {
+      src = urlFor(item.image).url();
+    } else if (item.mediaType === 'video' && item.videoUrl) {
+      src = item.videoUrl;
+    }
+
+    // Assign grid positions in a cycle to maintain layout variety
+    const gridClasses = [
+      "col-span-2 row-span-2",
+      "col-span-2 row-span-1",
+      "col-span-1 row-span-1",
+      "col-span-1 row-span-1",
+      "col-span-1 row-span-2 hidden md:block",
+      "col-span-2 row-span-2",
+      "col-span-1 row-span-1",
+      "col-span-1 row-span-1",
+      "col-span-2 row-span-1 md:hidden"
+    ];
+
+    return {
+      id: item._id,
+      mediaType: item.mediaType,
+      src,
+      gridClass: gridClasses[index % gridClasses.length],
+      title: item.title || 'Gallery Item'
+    };
+  });
+};
+
 export function LandingPage({ clients, projects, gallery, products }: { clients: any[], projects: any[], gallery: any[], products: any[] }) {
-  const [activeTab, setActiveTab] = useState(HARDCODED_CATEGORIES[0].id);
+  // Transform Sanity products into categories
+  const categories = transformProductsToCategories(products);
+  
+  // Transform Sanity gallery items
+  const galleryItems = transformGalleryItems(gallery);
+  
+  const [activeTab, setActiveTab] = useState(categories[0]?.id || "");
   const [certSrc, setCertSrc] = useState<string | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const messageRef = useRef<HTMLTextAreaElement>(null);
@@ -817,7 +856,7 @@ export function LandingPage({ clients, projects, gallery, products }: { clients:
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
             {/* <!-- Left Column: Tabs --> */}
             <div className="lg:w-1/3 flex flex-col justify-top gap-4 ">
-              {HARDCODED_CATEGORIES.map((category) => {
+              {categories.map((category) => {
                 const isActive = activeTab === category.id;
                 return (
                   <button
@@ -845,7 +884,7 @@ export function LandingPage({ clients, projects, gallery, products }: { clients:
                 ref={productScrollRef}
                 className="flex gap-4 lg:gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-6"
               >
-                {HARDCODED_CATEGORIES.find(c => c.id === activeTab)?.products.map((product) => (
+                {categories.find(c => c.id === activeTab)?.products.map((product: any) => (
                   <div
                     key={product.id}
                     className="w-[85vw] sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 snap-start bg-white dark:bg-gray-800 p-4 lg:p-5 rounded-2xl shadow-sm hover:shadow-xl transition-all group animate-in fade-in slide-in-from-bottom-4 duration-500 flex flex-col"
@@ -905,66 +944,24 @@ export function LandingPage({ clients, projects, gallery, products }: { clients:
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[180px] md:auto-rows-[240px] gap-4 md:gap-6">
-            <GalleryImage
-              src="https://img.freepik.com/premium-photo/workers-ascending-metal-maze-realistic-depiction-scaffolding-climbing-candid-daily-wo_980716-109649.jpg?w=2000"
-              className="col-span-2 row-span-2"
-            />
-            <GalleryImage
-              src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80"
-              className="col-span-2 row-span-1"
-            />
-            <div className="col-span-1 row-span-1 group relative overflow-hidden shadow-sm hover:shadow-xl transition-all">
-              <video
-                src="https://www.w3schools.com/html/mov_bbb.mp4"
-                className="w-full h-full object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.06] block"
-                autoPlay
-                muted
-                loop
-                playsInline
-              />
-              <div className="absolute inset-0 bg-charcoal/40 opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] pointer-events-none" />
-            </div>
-            <GalleryImage
-              src="https://cdn.pixabay.com/photo/2023/09/14/09/07/scaffolding-8252585_960_720.jpg"
-              className="col-span-1 row-span-1"
-            />
-
-            <GalleryImage
-              src="https://images.unsplash.com/photo-1590650153855-d9e808231d41?auto=format&fit=crop&w=900&q=80"
-              className="col-span-1 row-span-2 hidden md:block"
-            />
-            <div className="col-span-2 row-span-2 group relative overflow-hidden shadow-sm hover:shadow-xl transition-all">
-              <video
-                src="https://www.w3schools.com/html/movie.mp4"
-                className="w-full h-full object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.06] block"
-                autoPlay
-                muted
-                loop
-                playsInline
-              />
-              <div className="absolute inset-0 bg-charcoal/40 opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] pointer-events-none" />
-            </div>
-            <GalleryImage
-              src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=900&q=80"
-              className="col-span-1 row-span-1"
-            />
-            <GalleryImage
-              src="https://img.freepik.com/premium-photo/construction-workers-working-construction-site_891336-3566.jpg"
-              className="col-span-1 row-span-1"
-            />
-            <GalleryImage
-              src="https://images.unsplash.com/photo-1590650153855-d9e808231d41?auto=format&fit=crop&w=900&q=80"
-              className="col-span-2 row-span-1 md:hidden"
-            />
+            {galleryItems.map((item: any) => 
+              item.mediaType === 'video' ? (
+                <div key={item.id} className={`group relative overflow-hidden shadow-sm hover:shadow-xl transition-all ${item.gridClass}`}>
+                  <video
+                    src={item.src}
+                    className="w-full h-full object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.06] block"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                  />
+                  <div className="absolute inset-0 bg-charcoal/40 opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] pointer-events-none" />
+                </div>
+              ) : (
+                <GalleryImage key={item.id} src={item.src} className={item.gridClass} />
+              )
+            )}
           </div>
-          {/* <div className="flex justify-center mt-16">
-            <Link
-              href="/gallery"
-              className="bg-primary hover:bg-yellow-500 text-charcoal px-10 py-4 rounded-xl font-bold transition-all shadow-lg shadow-primary/20"
-            >
-              View Full Gallery
-            </Link>
-          </div> */}
         </section>
 
         <section className="px-6 md:px-20 py-10 lg:py-28 bg-background-light dark:bg-background-dark">
