@@ -191,6 +191,7 @@ const HARDCODED_CATEGORIES = [
 export function LandingPage({ clients, projects, gallery, products }: { clients: any[], projects: any[], gallery: any[], products: any[] }) {
   const [activeTab, setActiveTab] = useState(HARDCODED_CATEGORIES[0].id);
   const [certSrc, setCertSrc] = useState<string | null>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
   const messageRef = useRef<HTMLTextAreaElement>(null);
   const pausedSlidersRef = useRef(new Set<string>());
   const sliderStateRef = useRef<Record<string, number>>({ cat1: 0, cat2: 0 });
@@ -220,6 +221,12 @@ export function LandingPage({ clients, projects, gallery, products }: { clients:
 
   const openCertificate = useCallback((src: string) => setCertSrc(src), []);
   const closeCertificate = useCallback(() => setCertSrc(null), []);
+
+  useEffect(() => {
+    // This matches the timing of your TPRCLoader (approx 3.2 seconds)
+    const timer = setTimeout(() => setIsLoaded(true), 3200);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const reduceMotion = window.matchMedia(
@@ -419,7 +426,8 @@ export function LandingPage({ clients, projects, gallery, products }: { clients:
   return (
     <>
       <TPRCLoader />
-      <ShareFloating />
+      {/* Only render the share button once isLoaded is true */}
+      {isLoaded && <ShareFloating />}
 
       <header className="sticky top-0 z-50 w-full border-b border-gray-200/50 dark:border-gray-800/50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md transition-[background-color,backdrop-filter,border-color] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]">
         <div className="max-w-[1440px] mx-auto px-6 md:px-20 py-4 flex items-center justify-between">
