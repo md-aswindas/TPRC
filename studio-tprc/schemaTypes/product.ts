@@ -1,4 +1,3 @@
-// studio-tprc/schemaTypes/product.ts
 export default {
   name: 'product',
   type: 'document',
@@ -8,18 +7,15 @@ export default {
       name: 'title',
       type: 'string',
       title: 'Product Name',
+      validation: (Rule: any) => Rule.required(),
     },
     {
-      name: 'categoryName',
-      type: 'string',
-      title: 'Category Name',
-      description: 'e.g., Scaffolding Materials, Access Equipment',
-    },
-    {
-      name: 'categoryNumber',
-      type: 'string',
-      title: 'Category Number',
-      description: 'e.g., 01, 02 (Used for the big numbers in the tabs)',
+      name: 'category',
+      type: 'reference',
+      to: [{ type: 'category' }], 
+      title: 'Category Selection',
+      description: 'Pick an existing category or create a new one',
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: 'subtitle',
@@ -38,6 +34,7 @@ export default {
       type: 'image',
       title: 'Product Image',
       options: { hotspot: true },
+      validation: (Rule: any) => Rule.required(),
     },
   ],
 }
