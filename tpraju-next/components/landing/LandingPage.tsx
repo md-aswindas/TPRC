@@ -193,7 +193,11 @@ const transformGalleryItems = (galleryItems: any[]) => {
   return galleryItems.map((item: any, index: number) => {
     let src = '';
     if (item.mediaType === 'image' && item.image) {
-      src = urlFor(item.image).url();
+      src = urlFor(item.image)
+        .width(800)
+        .quality(80)
+        .auto('format')
+        .url();
     } else if (item.mediaType === 'video' && item.videoUrl) {
       src = item.videoUrl;
     }
