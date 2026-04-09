@@ -226,7 +226,14 @@ const transformGalleryItems = (galleryItems: GalleryItem[]) => {
   });
 };
 
-export function LandingPage({ clients, projects, gallery, products }: { clients: any[], projects: Project[], gallery: GalleryItem[], products: Product[] }) {
+interface LandingPageProps {
+  clients: any[]; // You can define a Client interface later
+  projects: Project[];
+  gallery: GalleryItem[];
+  products: Product[];
+}
+
+export function LandingPage({ clients, projects, gallery, products }: LandingPageProps) {
   // Transform Sanity products into categories
   const categories = transformProductsToCategories(products);
   
