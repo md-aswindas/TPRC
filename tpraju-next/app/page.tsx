@@ -1,6 +1,6 @@
 import { LandingPage } from "@/components/landing/LandingPage";
 import { client } from "@/lib/sanity.client";
-import { Project, Product, GalleryItem } from "@/types/sanity";
+import { Project, Product, GalleryItem, Client } from "@/types/sanity";
 
 export default async function Home() {
   const [clients, projects, gallery, products] = await Promise.all([
@@ -16,7 +16,7 @@ export default async function Home() {
   tag,
   image
 } | order(categoryNumber asc)`)      
-    ]) as [any[], Project[], GalleryItem[], Product[]];
+    ]) as [Client[], Project[], GalleryItem[], Product[]];
 
   return (
     <LandingPage 

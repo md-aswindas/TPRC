@@ -31,3 +31,9 @@ export interface GalleryItem {
   image?: SanityImage;
   videoUrl?: string;
 }
+
+export interface Client {
+  _id: string;
+  name: string;
+  logo: SanityImage;
+}
