@@ -15,6 +15,7 @@ import { urlFor } from "@/lib/sanity.image";
 import { sendContactEmail } from "@/app/actions/contact";
 
 import { TPRCLoader } from "./LoadingScreen";
+import { Project, Product, GalleryItem } from "@/types/sanity";
 
 const HERO_BG =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuCWASYnz6kODAfg1YQ7cNgUaCc6Qf64cMUfUHa-QNDn1FrMKLUdQdl3YTQHI8hCfUECTGZghv4-X3PzmTWa1V3QJOSi4ifkXFl9DBLxqsCjjWkGdPK2iQIFEFWmJ_Be1ygq8HgEgr-tk8-CPTuhtc4DjiKfL4OnIogfAvI4svCNTlMf5nNGIFUPaIUwtjhC0vjyHufhH0MTJwT3Z9r8iuUVLhjnrFHeJNJ3rsijo4Z820RAIbo4bSFdhdM--vU7TxWWDxHSErUfIfM7";
@@ -141,13 +142,13 @@ const FALLBACK_CATEGORIES = [
 ];
 
 // Helper function to transform Sanity products into categories
-const transformProductsToCategories = (products: any[]) => {
+const transformProductsToCategories = (products: Product[]) => {
   if (!products || products.length === 0) {
     return FALLBACK_CATEGORIES;
   }
 
   // Group products by category
-  const grouped = products.reduce((acc: Record<string, any>, product: any) => {
+  const grouped = products.reduce((acc: Record<string, any>, product: Product) => {
     const categoryKey = product.categoryName || "Uncategorized";
     if (!acc[categoryKey]) {
       acc[categoryKey] = {
@@ -184,13 +185,13 @@ const FALLBACK_GALLERY_ITEMS = [
 ];
 
 // Helper function to transform Sanity gallery items
-const transformGalleryItems = (galleryItems: any[]) => {
+const transformGalleryItems = (galleryItems: GalleryItem[]) => {
   if (!galleryItems || galleryItems.length === 0) {
     return FALLBACK_GALLERY_ITEMS;
   }
 
   // Map through gallery items and optimize media
-  return galleryItems.map((item: any, index: number) => {
+  return galleryItems.map((item: GalleryItem, index: number) => {
     let src = '';
     if (item.mediaType === 'image' && item.image) {
       src = urlFor(item.image)
@@ -225,7 +226,7 @@ const transformGalleryItems = (galleryItems: any[]) => {
   });
 };
 
-export function LandingPage({ clients, projects, gallery, products }: { clients: any[], projects: any[], gallery: any[], products: any[] }) {
+export function LandingPage({ clients, projects, gallery, products }: { clients: any[], projects: Project[], gallery: GalleryItem[], products: Product[] }) {
   // Transform Sanity products into categories
   const categories = transformProductsToCategories(products);
   
@@ -752,7 +753,7 @@ export function LandingPage({ clients, projects, gallery, products }: { clients:
               id="featured-track"
               className="flex gap-8 px-6 md:px-20 w-max"
             >
-              {projects?.map((project: any) => (
+              {projects?.map((project: Project) => (
 
                 <div key={project._id} className="min-w-[400px] md:min-w-[600px] snap-center">
                   <div className="group relative overflow-hidden rounded-2xl aspect-[16/9]">
@@ -1027,9 +1028,9 @@ export function LandingPage({ clients, projects, gallery, products }: { clients:
 
             <div className="bg-background-light dark:bg-background-dark p-8 rounded-2xl relative">
               <p className="italic text-gray-600 dark:text-gray-300 mb-6">
-                <span className="text-primary font-black text-lg">" </span>
+                <span className="text-primary font-black text-lg">&quot; </span>
                 Their commitment to safety is unparalleled. In our refinery expansion, TP Raju Engineering completed 20,000 man-hours without a single incident.
-                <span className="text-primary font-black text-lg">"</span>
+                <span className="text-primary font-black text-lg">&quot;</span>
               </p>
               <div>
                 <p className="font-black">Ramesh Kumar</p>
@@ -1039,9 +1040,9 @@ export function LandingPage({ clients, projects, gallery, products }: { clients:
 
             <div className="bg-background-light dark:bg-background-dark p-8 rounded-2xl relative">
               <p className="italic text-gray-600 dark:text-gray-300 mb-6">
-                <span className="text-primary font-black text-lg">" </span>
+                <span className="text-primary font-black text-lg">&quot; </span>
                 Excellent material quality and prompt delivery. Their fabrication work for our chemical reactor housing was precise and handled with great care.
-                <span className="text-primary font-black text-lg">"</span>
+                <span className="text-primary font-black text-lg">&quot;</span>
               </p>
               <div>
                 <p className="font-black">S. Venkatesh</p>
@@ -1051,9 +1052,9 @@ export function LandingPage({ clients, projects, gallery, products }: { clients:
 
             <div className="bg-background-light dark:bg-background-dark p-8 rounded-2xl relative">
               <p className="italic text-gray-600 dark:text-gray-300 mb-6">
-                <span className="text-primary font-black text-lg">" </span>
+                <span className="text-primary font-black text-lg">&quot; </span>
                 The rental service is highly efficient. They provided us with specialized cantilever scaffolding that solved a major accessibility challenge.
-                <span className="text-primary font-black text-lg">"</span>
+                <span className="text-primary font-black text-lg">&quot;</span>
               </p>
               <div>
                 <p className="font-black">David Miller</p>
