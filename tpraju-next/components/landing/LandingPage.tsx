@@ -785,75 +785,7 @@ export function LandingPage({ clients, projects, gallery, products }: LandingPag
 
 
 
-        {/* <section className="px-6 md:px-20 py-20 lg:py-32 bg-background-light dark:bg-background-dark">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-black mb-4">Industrial Hardware Store</h2>
-            <p className="text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
-              We supply premium grade Cuplock systems, pipes, and scaffolding
-              components certified for heavy-duty industrial use.
-            </p>
-          </div>
-          <div className="grid lg:grid-cols-2 gap-10">
-            <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-sm">
-              <h3 className="text-2xl font-bold mb-6 text-center text-gray-800 dark:text-gray-200">
-                Product Category 1
-              </h3>
-              <div className="relative">
-                <div
-                  id="cat1"
-                  className="flex gap-6 overflow-x-auto scroll-smooth no-scrollbar px-12 py-2 snap-x snap-mandatory"
-                  onMouseEnter={() => pauseScroll("cat1")}
-                  onMouseLeave={() => resumeScroll("cat1")}
-                >
-                  <ProductSlide
-                    img="https://images.unsplash.com/photo-1504307651254-35680f356dfd"
-                    title="Steel Pipes"
-                    subtitle="40NB & 50NB Grade"
-                  />
-                  <ProductSlide
-                    img="https://images.unsplash.com/photo-1513828583688-c52646db42da"
-                    title="Walkway Boards"
-                    subtitle="Heavy Duty"
-                  />
-                  <ProductSlide
-                    img="https://images.unsplash.com/photo-1503387762-592deb58ef4e"
-                    title="Scaffolding Clamps"
-                    subtitle="Industrial Grade"
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-sm">
-              <h3 className="text-2xl font-bold mb-6 text-center text-gray-800 dark:text-gray-200">
-                Product Category 2
-              </h3>
-              <div className="relative">
-                <div
-                  id="cat2"
-                  className="flex gap-6 overflow-x-auto scroll-smooth no-scrollbar px-12 py-2 snap-x snap-mandatory"
-                  onMouseEnter={() => pauseScroll("cat2")}
-                  onMouseLeave={() => resumeScroll("cat2")}
-                >
-                  <ProductSlide
-                    img="https://images.unsplash.com/photo-1504307651254-35680f356dfd"
-                    title="Steel Pipes"
-                    subtitle="40NB & 50NB Grade"
-                  />
-                  <ProductSlide
-                    img="https://images.unsplash.com/photo-1513828583688-c52646db42da"
-                    title="Walkway Boards"
-                    subtitle="Heavy Duty"
-                  />
-                  <ProductSlide
-                    img="https://images.unsplash.com/photo-1503387762-592deb58ef4e"
-                    title="Scaffolding Clamps"
-                    subtitle="Industrial Grade"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section> */}
+        
 
         <section className="px-6 md:px-20 py-20 lg:py-32 bg-background-light dark:bg-background-dark">
           <div className="text-center mb-16">
